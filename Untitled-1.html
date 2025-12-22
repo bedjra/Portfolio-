@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Armel Bedjra</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #00b4d8;
+            --dark-blue: #0077b6;
+            --accent-cyan: #48cae4;
+            --bg-dark: #03045e;
+            --text-dark: #1e1e1e;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(135deg, #001d3d 0%, #003566 50%, #001d3d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .book-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 700px;
+            perspective: 2000px;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        /* Reliure centrale */
+        .book::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(to right,
+                    #003566 0%,
+                    #0077b6 20%,
+                    #00b4d8 50%,
+                    #0077b6 80%,
+                    #003566 100%);
+            border-radius: 5px;
+            box-shadow:
+                0 0 20px rgba(0, 119, 182, 0.6),
+                inset 2px 0 4px rgba(255, 255, 255, 0.3);
+            z-index: 100;
+        }
+
+        /* Anneaux de spirale */
+        .book::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: calc(100% - 60px);
+            z-index: 101;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle 8px at center, rgba(0, 29, 61, 0.8) 0%, transparent 100%),
+                radial-gradient(circle 16px at center,
+                    transparent 0%, transparent 28%,
+                    #001d3d 28%, #003566 32%,
+                    #0077b6 36%, #00b4d8 42%,
+                    #48cae4 50%, #00b4d8 58%,
+                    #0077b6 64%, #003566 68%,
+                    #001d3d 72%, transparent 72%);
+            background-size: 40px 60px;
+            background-position: center top;
+            background-repeat: repeat-y;
+        }
+
+        .page {
+            position: absolute;
+            width: calc(50% - 20px);
+            height: 100%;
+            background: var(--white);
+            box-shadow: 0 20px 60px var(--shadow);
+            padding: 60px 50px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1),
+                        opacity 0.8s ease;
+        }
+
+        .page::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .page::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .page::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 3px;
+        }
+
+        .page-left {
+            left: 0;
+            transform-origin: right center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .page-right {
+            right: 0;
+            transform-origin: left center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .page.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Page 1 - Profile */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
+            margin-bottom: 30px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: -1px;
+        }
+
+        .title {
+            font-size: 20px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.4);
+        }
+
+        .bio {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 450px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 180, 216, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Page 2 - Experience */
+        .experience-section {
+            padding: 20px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+            border-radius: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-blue), var(--accent-cyan));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary-blue);
+        }
+
+        .job-period {
+            display: inline-block;
+            background: var(--accent-cyan);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .job-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .job-company {
+            font-size: 16px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .job-description {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-description li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .job-description li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Page 3 - Skills */
+        .skills-section {
+            padding: 20px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--accent-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .skill-icon {
+            font-size: 40px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .skill-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        /* Navigation */
+        .nav-arrows {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 200;
+        }
+
+        .arrow-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 180, 216, 0.4);
+        }
+
+        .arrow-btn:hover:not(:disabled) {
+            background: var(--dark-blue);
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 180, 216, 0.6);
+        }
+
+        .arrow-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 200;
+        }
+
+        .page-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-dot:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .page-dot.active {
+            background: var(--primary-blue);
+            width: 35px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book::before,
+            .book::after {
+                display: none;
+            }
+
+            .book-container {
+                height: auto;
+                min-height: 600px;
+            }
+
+            .book {
+                flex-direction: column;
+            }
+
+            .page {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .page-left,
+            .page-right {
+                left: auto;
+                right: auto;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="book-container">
+        <div class="book">
+            <!-- Page 1 - Profile -->
+            <div class="page page-left" id="page-1">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="assets/profile.JPG" alt="Profil">
+                    </div>
+                    <h1 class="name">ARMEL BEDJRA</h1>
+                    <p class="title">Développeur Web Backend</p>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+                    <p class="bio">
+                        Salut, je suis Armel BEDJRA, développeur Web spécialisé dans le BACKEND.
+                        Je crée des applications performantes et robustes côté serveur,
+                        et j'assure que vos projets fonctionnent efficacement.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="#" class="btn btn-primary">Télécharger CV</a>
+                        <a href="#" class="btn btn-secondary">Contactez-moi</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2 - Experience -->
+            <div class="page page-right hidden" id="page-2">
+                <div class="experience-section">
+                    <h2 class="section-title">Expérience Professionnelle</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="job-period">10/2024 – 10/2025</span>
+                            <h3 class="job-title">Développeur Backend Spring Boot</h3>
+                            <p class="job-company">WIICODE (Togo) — Lomé</p>
+                            <ul class="job-description">
+                                <li>Développement et amélioration des solutions internes</li>
+                                <li>Mise en place d'APIs sécurisées et intégration avec le frontend</li>
+                                <li>Optimisation des performances et de la base de données</li>
+                                <li>Développement de nouvelles fonctionnalités selon les besoins des utilisateurs</li>
+                                <li>Documentation technique et accompagnement des équipes</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="job-period">06/2024 – 09/2024</span>
+                            <h3 class="job-title">Stage en développement web</h3>
+                            <p class="job-company">Defitech — Lomé</p>
+                            <ul class="job-description">
+                                <li>Développement d'une application de gestion des paiements de scolarité</li>
+                                <li>Gestion des inscriptions et paiements des étudiants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3 - Skills -->
+            <div class="page page-left hidden" id="page-3">
+                <div class="skills-section">
+                    <h2 class="section-title">Compétences</h2>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fab fa-java"></i></div>
+                            <h3 class="skill-name">Backend Development</h3>
+                            <p class="skill-description">
+                                Expertise en Spring Boot, API REST, sécurité et architecture microservices.
+                            </p>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <h3 class="skill-name">Bases de données</h3>
+                            <p class="skill-description">
+                                Maîtrise de SQL, PostgreSQL, MySQL et optimisation des requêtes.
+                            </p>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <h3 class="skill-name">Développement Web</h3>
+                            <p class="skill-description">
+                                HTML, CSS, JavaScript et intégration frontend-backend.
+                            </p>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                            <h3 class="skill-name">Outils & DevOps</h3>
+                            <p class="skill-description">
+                                Git, Docker, CI/CD et déploiement d'applications.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="page-indicator">
+            <div class="page-dot active" data-page="1"></div>
+            <div class="page-dot" data-page="2"></div>
+            <div class="page-dot" data-page="3"></div>
+        </div>
+
+        <div class="nav-arrows">
+            <button class="arrow-btn" id="prev-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="arrow-btn" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 3;
+
+        const pages = {
+            1: document.getElementById('page-1'),
+            2: document.getElementById('page-2'),
+            3: document.getElementById('page-3')
+        };
+
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pageDots = document.querySelectorAll('.page-dot');
+
+        function updatePages() {
+            // Cacher toutes les pages
+            Object.values(pages).forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Afficher la page courante et sa page opposée
+            if (currentPage === 1) {
+                pages[1].classList.remove('hidden');
+            } else if (currentPage === 2) {
+                pages[2].classList.remove('hidden');
+            } else if (currentPage === 3) {
+                pages[3].classList.remove('hidden');
+            }
+
+            // Mise à jour des boutons
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+
+            // Mise à jour des indicateurs
+            pageDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentPage);
+            });
+        }
+
+        function goToPage(pageNum) {
+            if (pageNum >= 1 && pageNum <= totalPages) {
+                currentPage = pageNum;
+                updatePages();
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        });
+
+        pageDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const pageNum = parseInt(dot.dataset.page);
+                goToPage(pageNum);
+            });
+        });
+
+        // Initialisation
+        updatePages();
+    </script>
+</body>
+
+</html>

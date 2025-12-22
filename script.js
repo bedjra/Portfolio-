@@ -7,11 +7,9 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 
 function updateNavigation() {
-    // boutons
     prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.disabled = currentPage === totalPages - 1;
 
-    // dots
     dots.forEach(dot => {
         dot.classList.toggle(
             'active',
@@ -21,18 +19,17 @@ function updateNavigation() {
 }
 
 function updatePages() {
-    pages.forEach((page, index) => {
-        // index + 1 = numéro de la page
-        if (index + 1 < currentPage) {
-            page.classList.add('flipped');
-        } else {
-            page.classList.remove('flipped');
-        }
-    });
+    pages.forEach(page => page.classList.remove('active'));
+
+    const leftPage = document.getElementById(`page-${currentPage}`);
+    const rightPage = document.getElementById(`page-${currentPage + 1}`);
+
+    if (leftPage) leftPage.classList.add('active');
+    if (rightPage) rightPage.classList.add('active');
 }
 
 function navigateToPage(page) {
-    if (page < 1 || page > totalPages) return;
+    if (page < 1 || page >= totalPages) return;
 
     currentPage = page;
     updatePages();
