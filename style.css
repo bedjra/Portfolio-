@@ -1,0 +1,529 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #00b4d8;
+    --dark-blue: #0077b6;
+    --accent-cyan: #48cae4;
+    --bg-dark: #03045e;
+    --text-dark: #1e1e1e;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    background: linear-gradient(135deg, #001d3d 0%, #003566 50%, #001d3d 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    perspective: 2000px;
+    overflow-x: hidden;
+}
+
+.book-container {
+    position: relative;
+    width: 95%;
+
+
+
+    max-width: 1400px;
+    height: 670px;
+    transform-style: preserve-3d;
+    animation: floatIn 1.5s ease-out;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) rotateY(-15deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateY(0deg);
+    }
+}
+
+.book {
+    position: relative;
+    width: 95%;
+
+
+
+    height: 100%;
+    display: flex;
+    transform-style: preserve-3d;
+}
+
+/* ============================================
+   RELIURE SPIRALE AVEC ANNEAUX CIRCULAIRES
+   Adaptée aux couleurs du portfolio (bleu)
+   ============================================ */
+
+.book::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(6px);
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        #003566 0%,
+        #0077b6 20%,
+        #00b4d8 50%,
+        #0077b6 80%,
+        #003566 100%
+    );
+    border-radius: 5px;
+    box-shadow: 
+        0 0 15px rgba(0, 119, 182, 0.5),
+        inset 2px 0 3px rgba(255, 255, 255, 0.3),
+        -2px 0 8px rgba(0, 0, 0, 0.3),
+        2px 0 8px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* ============================================
+   RELIURE SPIRALE AVEC ANNEAUX CIRCULAIRES
+   Adaptée aux couleurs du portfolio (bleu)
+   ============================================ */
+
+.book::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(6px);
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        #003566 0%,
+        #0077b6 20%,
+        #00b4d8 50%,
+        #0077b6 80%,
+        #003566 100%
+    );
+    border-radius: 5px;
+    box-shadow: 
+        0 0 15px rgba(0, 119, 182, 0.5),
+        inset 2px 0 3px rgba(255, 255, 255, 0.3),
+        -2px 0 8px rgba(0, 0, 0, 0.3),
+        2px 0 8px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    pointer-events: none;
+}
+
+.book::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(9px);
+    width: 100%;
+    height: calc(100% - 40px);
+    z-index: 21;
+    pointer-events: none;
+    
+    /* Anneaux de spirale répétés avec couleurs bleues */
+    background-image: 
+        /* Ombre intérieure de l'anneau */
+        radial-gradient(circle 8px at center,
+            rgba(0, 29, 61, 0.8) 0%,
+            transparent 100%
+        ),
+        /* Anneau principal avec gradient bleu métallique */
+        radial-gradient(circle 16px at center,
+            transparent 0%,
+            transparent 28%,
+            #001d3d 28%,
+            #003566 32%,
+            #0077b6 36%,
+            #00b4d8 42%,
+            #48cae4 50%,
+            #00b4d8 58%,
+            #0077b6 64%,
+            #003566 68%,
+            #001d3d 72%,
+            transparent 72%,
+            transparent 100%
+        ),
+        /* Reflet brillant sur l'anneau */
+        radial-gradient(ellipse 12px 6px at 48% 45%,
+            rgba(255, 255, 255, 0.7) 0%,
+            rgba(72, 202, 228, 0.4) 50%,
+            transparent 100%
+        );
+    
+    background-size: 40px 55px;
+    background-position: center top;
+    background-repeat: repeat-y;
+}
+
+/* ============================================
+   MASQUER LA RELIURE SUR MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .book::before,
+    .book::after {
+        display: none;
+    }
+}
+
+.page {
+    position: absolute;
+    width: calc(50% - 12px);
+    height: 100%;
+    background: var(--white);
+    box-shadow: 0 20px 60px var(--shadow);
+    padding: 60px;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+}
+
+.page {
+    transition:
+        transform 1s cubic-bezier(0.645, 0.045, 0.355, 1),
+        box-shadow 0.6s ease;
+}
+
+
+.page::-webkit-scrollbar {
+    width: 6px;
+}
+
+.page::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.page::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 3px;
+}
+
+
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 95%;
+
+
+
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, transparent 10%);
+    pointer-events: none;
+}
+
+.page-left {
+    left: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.page-right {
+    left: calc(50% + 12px);
+    transform-origin: left center;
+}
+
+
+.page.flipped {
+    transform: rotateY(-180deg);
+    pointer-events: none;
+    box-shadow: -30px 0 50px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+/* Page 2 - Work Experience */
+.experience-section {
+    padding: 40px 20px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-blue);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+    border-left: 3px solid var(--accent-cyan);
+}
+
+.timeline-item {
+    margin-bottom: 35px;
+    position: relative;
+    animation: slideInRight 0.6s ease-out backwards;
+}
+
+.timeline-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 3px var(--accent-cyan);
+}
+
+.job-period {
+    display: inline-block;
+    background: var(--accent-cyan);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.job-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.job-company {
+    font-size: 16px;
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.job-description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+/* Page 3 - Skills */
+.skills-section {
+    padding: 40px 20px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid var(--accent-cyan);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.skill-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.skill-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.skill-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.skill-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 180, 216, 0.2);
+    border-color: var(--primary-blue);
+}
+
+.skill-icon {
+    font-size: 40px;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.skill-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.btn-read-more {
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-read-more:hover {
+    background: var(--dark-blue);
+    transform: translateX(5px);
+}
+
+/* Navigation */
+.nav-arrows {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.arrow-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 180, 216, 0.3);
+}
+
+.arrow-btn:hover:not(:disabled) {
+    background: var(--dark-blue);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 180, 216, 0.5);
+}
+
+.arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.page-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-dot.active {
+    background: var(--primary-blue);
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Decorative elements */
+.deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.deco-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -100px;
+}
+
+.deco-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    left: -50px;
+}

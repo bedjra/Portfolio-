@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio CV - Gordon Felix</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Responsivite.css">
+    <link rel="stylesheet" href="profil.css">
+</head>
+
+<body>
+
+    <div class="book-container">
+        <div class="book">
+
+            <!-- Page 1 -->
+            <div class="page page-left" id="page-1">
+                <div class="deco-circle deco-1"></div>
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="assets/profile.JPG" alt="Profil">
+                    </div>
+                    <h1 class="name">Armel BEDJRA</h1>
+                    <p class="title">Développeur Web</p>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+                    <p class="bio">
+                        Salut, je suis Armel BEDJRA, développeur Web spécialisé dans le BACKEND.
+                        Je crée des applications performantes et robustes côté serveur,
+                        et j'assure que vos projets fonctionnent efficacement.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="#" class="btn btn-primary">Télécharger CV</a>
+                        <a href="#" class="btn btn-secondary">Contactez-moi</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Page 2 -->
+            <div class="page page-right" id="page-2">
+                <div class="deco-circle deco-2"></div>
+                <div class="experience-section">
+                    <h2 class="section-title">Expérience Professionnelle</h2>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="job-period">2022 - 2025</span>
+                            <h3 class="job-title">Développeur Web Senior</h3>
+                            <p class="job-company">TechCorp Solutions</p>
+                            <p class="job-description">
+                                Développement d'applications web complexes utilisant React et Node.js.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="job-period">2020 - 2022</span>
+                            <h3 class="job-title">Développeur Full Stack</h3>
+                            <p class="job-company">Digital Agency Pro</p>
+                            <p class="job-description">
+                                Création de sites web et applications pour divers clients.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="job-period">2018 - 2020</span>
+                            <h3 class="job-title">Développeur Web Junior</h3>
+                            <p class="job-company">StartUp Innovations</p>
+                            <p class="job-description">
+                                Apprentissage et développement de compétences en développement web.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3 -->
+            <div class="page page-right" id="page-3">
+                <div class="skills-section">
+                    <h2 class="section-title">Compétences</h2>
+
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                            <h3 class="skill-name">Design Créatif</h3>
+                            <p class="skill-description">UI / UX moderne</p>
+                            <a href="#" class="btn-read-more">En savoir plus</a>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <h3 class="skill-name">Développement</h3>
+                            <p class="skill-description">JavaScript, React, Node</p>
+                            <a href="#" class="btn-read-more">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="page-indicator">
+            <div class="page-dot active" data-page="1"></div>
+            <div class="page-dot" data-page="2"></div>
+            <div class="page-dot" data-page="3"></div>
+        </div>
+
+        <div class="nav-arrows">
+            <button class="arrow-btn" id="prev-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="arrow-btn" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

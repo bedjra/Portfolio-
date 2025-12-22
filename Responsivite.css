@@ -1,0 +1,523 @@
+
+/* ============================================
+   RESPONSIVE STYLES - AMÉLIORATIONS
+   ============================================ */
+
+/* Tablettes et écrans moyens */
+@media (max-width: 1200px) {
+    .book-container {
+        height: 650px;
+        max-width: 1000px;
+    }
+
+    .page {
+        padding: 50px 40px;
+    }
+
+    .name {
+        font-size: 42px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile-image i {
+        font-size: 70px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .skills-grid {
+        gap: 20px;
+    }
+
+    .skill-card {
+        padding: 25px;
+    }
+}
+
+/* Tablettes portrait */
+@media (max-width: 992px) {
+    body {
+        padding: 15px;
+    }
+
+    .book-container {
+        height: 600px;
+        max-width: 800px;
+    }
+
+    .page {
+        padding: 40px 30px;
+    }
+
+    .name {
+        font-size: 36px;
+    }
+
+    .title {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .profile-image {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 25px;
+    }
+
+    .profile-image i {
+        font-size: 60px;
+    }
+
+    .bio {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .timeline {
+        padding-left: 25px;
+    }
+
+    .timeline-item {
+        margin-bottom: 30px;
+    }
+
+    .job-title {
+        font-size: 18px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .nav-arrows {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .arrow-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .page-indicator {
+        bottom: 20px;
+    }
+}
+
+/* Mobile paysage et petites tablettes */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        perspective: none;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .book-container {
+        height: auto;
+        min-height: auto;
+        max-width: 100%;
+        animation: none;
+    }
+
+    .book {
+        flex-direction: column;
+        transform-style: flat;
+    }
+
+    .page {
+        position: relative !important;
+        width: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+        margin-bottom: 20px;
+        padding: 40px 25px;
+        min-height: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .page.flipped {
+        transform: none !important;
+        pointer-events: auto;
+    }
+
+    .page::before {
+        display: none;
+    }
+
+    .profile-section {
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .profile-image {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 20px;
+        border: 6px solid var(--primary-blue);
+    }
+
+    .profile-image i {
+        font-size: 50px;
+    }
+
+    .name {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    .title {
+        font-size: 16px;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+    }
+
+    .social-links {
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .bio {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        padding: 0 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 95%;
+
+
+
+        gap: 15px;
+    }
+
+    .btn {
+        width: 95%;
+
+
+
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+
+    .experience-section,
+    .skills-section {
+        padding: 30px 15px;
+    }
+
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+
+    .section-title::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .timeline {
+        padding-left: 20px;
+        border-left-width: 2px;
+    }
+
+    .timeline-item {
+        margin-bottom: 25px;
+    }
+
+    .timeline-item::before {
+        left: -27px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .job-period {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .job-title {
+        font-size: 17px;
+    }
+
+    .job-company {
+        font-size: 15px;
+    }
+
+    .job-description {
+        font-size: 13px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .skill-card {
+        padding: 25px 20px;
+    }
+
+    .skill-icon {
+        font-size: 35px;
+    }
+
+    .skill-name {
+        font-size: 18px;
+    }
+
+    .skill-description {
+        font-size: 13px;
+    }
+
+    .nav-arrows {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+
+    .arrow-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .page-indicator {
+        bottom: 15px;
+        gap: 8px;
+    }
+
+    .page-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .page-dot.active {
+        width: 24px;
+    }
+
+    .deco-1,
+    .deco-2 {
+        display: none;
+    }
+}
+
+/* Petits mobiles */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .page {
+        padding: 30px 20px;
+        margin-bottom: 15px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+        border-width: 5px;
+    }
+
+    .profile-image i {
+        font-size: 45px;
+    }
+
+    .name {
+        font-size: 28px;
+        letter-spacing: 0;
+    }
+
+    .title {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .social-links {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .bio {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .section-title::after {
+        width: 50px;
+    }
+
+    .timeline {
+        padding-left: 18px;
+    }
+
+    .timeline-item::before {
+        left: -25px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .job-title {
+        font-size: 16px;
+    }
+
+    .job-company {
+        font-size: 14px;
+    }
+
+    .job-description {
+        font-size: 12px;
+    }
+
+    .skill-card {
+        padding: 20px 15px;
+    }
+
+    .skill-icon {
+        font-size: 32px;
+    }
+
+    .skill-name {
+        font-size: 17px;
+    }
+
+    .skill-description {
+        font-size: 12px;
+    }
+
+    .btn-read-more {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+
+    .nav-arrows {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .arrow-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+/* Très petits mobiles */
+@media (max-width: 360px) {
+    .page {
+        padding: 25px 15px;
+    }
+
+    .name {
+        font-size: 24px;
+    }
+
+    .title {
+        font-size: 13px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-image i {
+        font-size: 40px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .job-title {
+        font-size: 15px;
+    }
+
+    .skill-name {
+        font-size: 16px;
+    }
+}
+
+/* Mode paysage mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .book-container {
+        margin: 10px 0;
+    }
+
+    .page {
+        padding: 30px 20px;
+    }
+
+    .profile-section {
+        padding: 10px 0;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+
+    .name {
+        font-size: 28px;
+        margin-bottom: 5px;
+    }
+
+    .title {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .bio {
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        margin-bottom: 20px;
+    }
+}
