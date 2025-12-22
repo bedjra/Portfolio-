@@ -11,8 +11,8 @@
 }
 
 .profile-image {
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
     border: 8px solid var(--primary-blue);
     overflow: hidden;
@@ -22,9 +22,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: pulse 3s ease-in-out infinite;
     flex-shrink: 0;
+    margin-top: 10px;
 }
+
+.profile-image img {
+    width: 230px;            /* largeur de l'image */
+    height:210px;           /* hauteur de l'image */
+    border-radius: 50%;      /* rend l'image ronde */
+    object-fit: cover;       /* recadre l'image pour qu'elle remplisse le cercle */
+    border: 4px solid #fff;  /* contour blanc autour */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* ombre pour effet 3D */
+    transition: transform 0.3s ease; /* transition pour effet au survol */
+}
+
+.profile-image img:hover {
+    transform: scale(1.1);   /* effet zoom au survol */
+}
+
 
 @keyframes pulse {
     0%, 100% {
