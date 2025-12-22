@@ -1,16 +1,33 @@
 let currentPage = 1;
-const totalPages = 3;
+const totalPages = 5;
+
 const pages = document.querySelectorAll('.page');
 const dots = document.querySelectorAll('.page-dot');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 
 function updateNavigation() {
+    // boutons
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages;
 
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index + 1 === currentPage);
+    // dots
+    dots.forEach(dot => {
+        dot.classList.toggle(
+            'active',
+            Number(dot.dataset.page) === currentPage
+        );
+    });
+}
+
+function updatePages() {
+    pages.forEach((page, index) => {
+        // index + 1 = numéro de la page
+        if (index + 1 < currentPage) {
+            page.classList.add('flipped');
+        } else {
+            page.classList.remove('flipped');
+        }
     });
 }
 
@@ -18,35 +35,32 @@ function navigateToPage(page) {
     if (page < 1 || page > totalPages) return;
 
     currentPage = page;
-    pages.forEach(p => p.classList.remove('flipped'));
-
-    if (currentPage === 2) {
-        document.getElementById('page-1').classList.add('flipped');
-    } else if (currentPage === 3) {
-        document.getElementById('page-1').classList.add('flipped');
-        document.getElementById('page-2').classList.add('flipped');
-    }
-
+    updatePages();
     updateNavigation();
 }
 
+// boutons
 nextBtn.addEventListener('click', () => {
-    if (currentPage < totalPages) navigateToPage(currentPage + 1);
+    navigateToPage(currentPage + 1);
 });
 
 prevBtn.addEventListener('click', () => {
-    if (currentPage > 1) navigateToPage(currentPage - 1);
+    navigateToPage(currentPage - 1);
 });
 
+// dots
 dots.forEach(dot => {
     dot.addEventListener('click', () => {
-        navigateToPage(parseInt(dot.dataset.page));
+        navigateToPage(Number(dot.dataset.page));
     });
 });
 
+// clavier
 document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') navigateToPage(currentPage - 1);
+    if (e.key === 'ArrowRight') navigateToPage(currentPage + 1);
 });
 
+// init
+updatePages();
 updateNavigation();
